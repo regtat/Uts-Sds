@@ -9,23 +9,20 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func main(){
-
+func main() {
+	app := fiber.New()
 
 	database.Connect()
 
-	//Kumpulan Route Route 
+	//Kumpulan Route Route
 
-	
-	app.Post("/insert", route.InsertData )
+	app.Post("/insert", route.InsertData)
 	app.Get("/getData", route.GetAllData)
 	app.Get("/getDataUser/:id_user", route.GetUserByid)
 
-
 	app.Get("/delete/:id_user", route.Delete)
-	app.Put("/update/:id_user", route.Update) 
+	app.Put("/update/:id_user", route.Update)
 
+	log.Fatal(app.Listen(":3000"))
 
-	
-	
 }
